@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shelsy, mi amor más bonito ❤️</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <style>
+        body {
+            background: linear-gradient(135deg, #1a0f2e, #4a1a3d);
+            font-family: 'Segoe UI', sans-serif;
+            overflow-x: hidden;
+        }
+        
+        .heart {
+            position: absolute;
+            font-size: 30px;
+            color: #ff4d94;
+            animation: float 8s infinite ease-in-out;
+            opacity: 0.8;
+            z-index: 1;
+        }
+        
+        @keyframes float {
+            0% { transform: translateY(100vh) rotate(0deg); }
+            100% { transform: translateY(-100vh) rotate(360deg); }
+        }
+        
+        .photo-card {
+            transition: all 0.4s ease;
+        }
+        
+        .photo-card:hover {
+            transform: scale(1.06);
+            box-shadow: 0 0 30px rgba(236, 72, 153, 0.6);
+        }
+        
+        .piropos {
+            font-style: italic;
+            color: #fbcfe8;
+        }
+    </style>
+</head>
+<body class="min-h-screen text-white relative">
+
+    <!-- Corazones flotantes -->
+    <div id="hearts" class="fixed inset-0 pointer-events-none"></div>
+
+    <div class="max-w-4xl mx-auto py-12 px-6 relative z-10">
+        
+        <div class="text-center mb-12">
+            <h1 class="text-6xl font-bold tracking-widest text-pink-200 mb-2">Shelsy</h1>
+            <p class="text-3xl text-pink-400">Mi reina, mi todo ❤️</p>
+        </div>
+
+        <!-- Música de fondo -->
+        <div class="text-center mb-8">
+            <audio id="loveMusic" loop class="hidden">
+                <source src="https://assets.mixkit.co/sfx/preview/296/296-preview.mp3" type="audio/mpeg">
+            </audio>
+            <button onclick="toggleMusic()" 
+                    class="bg-pink-600 hover:bg-pink-700 px-6 py-3 rounded-full flex items-center gap-3 mx-auto">
+                <i class="fa-solid fa-music"></i>
+                <span id="musicText">Reproducir música romántica</span>
+            </button>
+        </div>
+
+        <!-- Fotos con piropos -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
+
+            <!-- Foto 1 -->
+            <div class="photo-card bg-white/10 backdrop-blur-md rounded-3xl overflow-hidden border border-pink-400/30">
+                <img src="shelsy1.jpg" alt="Shelsy" class="w-full h-auto object-cover">
+                <div class="p-6 text-center">
+                    <p class="piropos text-xl">"Tus ojos detrás de esos lentes me roban el alma cada vez que me miras. Eres hermosísima."</p>
+                </div>
+            </div>
+
+            <!-- Foto 2 -->
+            <div class="photo-card bg-white/10 backdrop-blur-md rounded-3xl overflow-hidden border border-pink-400/30">
+                <img src="shelsy2.jpg" alt="Shelsy" class="w-full h-auto object-cover">
+                <div class="p-6 text-center">
+                    <p class="piropos text-xl">"Inteligente, dulce y con una sonrisa que ilumina todo. Eres mi persona favorita en el mundo."</p>
+                </div>
+            </div>
+
+            <!-- Foto 3 -->
+            <div class="photo-card bg-white/10 backdrop-blur-md rounded-3xl overflow-hidden border border-pink-400/30">
+                <img src="shelsy3.jpg" alt="Shelsy" class="w-full h-auto object-cover">
+                <div class="p-6 text-center">
+                    <p class="piropos text-xl">"Tu belleza natural me deja sin palabras. Eres tan linda por fuera como por dentro, mi amor."</p>
+                </div>
+            </div>
+
+            <!-- Foto 4 -->
+            <div class="photo-card bg-white/10 backdrop-blur-md rounded-3xl overflow-hidden border border-pink-400/30">
+                <img src="shelsy4.jpg" alt="Shelsy" class="w-full h-auto object-cover">
+                <div class="p-6 text-center">
+                    <p class="piropos text-xl">"Esa mirada tierna y tu corazón amoroso hacen que te ame más cada día. Eres perfecta para mí."</p>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Mensaje final -->
+        <div class="mt-16 bg-gradient-to-br from-pink-500/20 to-purple-600/20 backdrop-blur-lg rounded-3xl p-12 text-center border border-pink-300/30">
+            <h2 class="text-4xl font-bold mb-6">Shelsy, te amo con todo mi ser</h2>
+            <p class="text-xl leading-relaxed max-w-2xl mx-auto">
+                Eres hermosa, inteligente, cariñosa y la persona más especial que he conocido. 
+                Cada foto tuya me recuerda por qué mi corazón late más fuerte cuando estás cerca. 
+                Gracias por ser tú, mi amor. Quiero estar a tu lado siempre.
+            </p>
+            <div class="mt-10 text-5xl">❤️ ∞ ❤️</div>
+        </div>
+    </div>
+
+    <script>
+        // Corazones flotantes
+        function createHeart() {
+            const heart = document.createElement('div');
+            heart.className = 'heart';
+            heart.textContent = ['❤️','💖','💗','💘','💝'][Math.floor(Math.random()*5)];
+            heart.style.left = Math.random() * 100 + 'vw';
+            heart.style.animationDuration = (Math.random() * 6 + 8) + 's';
+            heart.style.opacity = Math.random() * 0.6 + 0.5;
+            document.getElementById('hearts').appendChild(heart);
+            
+            setTimeout(() => heart.remove(), 16000);
+        }
+        setInterval(createHeart, 350);
+
+        // Control de música
+        const audio = document.getElementById('loveMusic');
+        function toggleMusic() {
+            if (audio.paused) {
+                audio.play();
+                document.getElementById('musicText').textContent = "Pausar música romántica";
+            } else {
+                audio.pause();
+                document.getElementById('musicText').textContent = "Reproducir música romántica";
+            }
+        }
+        
+        // Iniciar música
+        window.addEventListener('load', () => {
+            audio.volume = 0.4;
+        });
+    </script>
+</body>
+</html>
